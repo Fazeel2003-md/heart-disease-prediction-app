@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pickle 
+import joblib
 st.title("❤️ Cardiac Disease Prediction")
 Age=st.number_input('Enter your age',20,90)
 gender= st.radio("Select your gender", ["Male", "Female"])
@@ -78,8 +78,8 @@ if st.button('Click here',key='buttoon1') :
     st.dataframe(frame)             
 @st.cache_resource
 def load_model():
-    model = pickle.load(open("D:/ml_project/models/model.pkl", "rb"))
-    scaler = pickle.load(open("D:/ml_project/models/scaler.pkl", "rb"))
+    model = joblib.load("model.pkl")
+    scaler = joblib.load("scaler.pkl")
     return model, scaler
 model, scaler = load_model()
 st.subheader('Click here to predict heart disease')
